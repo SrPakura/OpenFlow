@@ -99,39 +99,3 @@ label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.8rem
 /* Links Repeater Styles */
 .link-row { display: flex; gap: 5px; margin-bottom: 5px; }
 .link-row input { margin-bottom: 0; }
-
-/* --- FIX PARA LA FILA DE ENLACES (VERSIÓN 2) --- */
-.link-row { 
-    display: flex; 
-    gap: 8px; 
-    margin-bottom: 10px; 
-    align-items: center; /* CAMBIO CLAVE: Esto evita que se vuelvan gigantes */
-}
-
-/* Forzamos el comportamiento de los inputs dentro de esta fila */
-.link-row input { 
-    width: auto !important;      /* Ignora el ancho global */
-    margin-bottom: 0 !important; /* Quita el margen inferior global */
-    height: 40px !important;     /* Altura fija para que coincida con el botón */
-    padding: 5px 10px !important;
-}
-
-/* Estilo para el botón X */
-.btn-remove-link {
-    background-color: var(--ink);
-    color: var(--acid);
-    border: 1px solid var(--ink);
-    height: 40px !important;     /* Misma altura que el input */
-    width: 40px !important;      /* Cuadrado perfecto */
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;              /* Evita que el botón se aplaste si falta sitio */
-}
-
-.btn-remove-link:hover {
-    color: #fff;
-}
-
