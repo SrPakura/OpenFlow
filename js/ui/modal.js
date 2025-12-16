@@ -18,11 +18,11 @@ export async function openTaskModal(taskId = null) {
     
     // Cargar datos si es edición
     if (taskId) {
-        title.textContent = "EDIT_PROTOCOL // " + taskId;
+        title.textContent = "EDITAR TAREA // " + taskId;
         const tasks = await db.getAll('tasks');
         task = tasks.find(t => t.id == taskId) || {};
     } else {
-        title.textContent = "INIT_PROTOCOL // NEW_TASK";
+        title.textContent = "NUEVA TAREA // REGISTRO";
     }
 
     // Preparar Select de Épicas
@@ -31,36 +31,36 @@ export async function openTaskModal(taskId = null) {
         `<option value="${e.id}" ${task.epicId === e.id ? 'selected' : ''}>${e.title}</option>`
     ).join('');
 
-    // Renderizar Formulario
+    // Renderizar Formulario (TRADUCIDO PERO MANTENIENDO ESTRUCTURA)
     body.innerHTML = `
         <form id="task-form">
-            <label>TITLE_DESC</label>
-            <input type="text" id="inp-title" value="${task.title || ''}" required placeholder="Task name...">
+            <label>TÍTULO DE LA TAREA</label>
+            <input type="text" id="inp-title" value="${task.title || ''}" required placeholder="Ej: Redacción de memoria...">
             
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
                 <div>
-                    <label>START_DATE</label>
+                    <label>FECHA INICIO</label>
                     <input type="date" id="inp-start" value="${task.startDate || new Date().toISOString().split('T')[0]}">
                 </div>
                 <div>
-                    <label>DUE_DATE</label>
+                    <label>FECHA LÍMITE</label>
                     <input type="date" id="inp-due" value="${task.dueDate || new Date().toISOString().split('T')[0]}">
                 </div>
             </div>
 
-            <label>ASSIGN_EPIC</label>
+            <label>ASIGNAR FASE (ÉPICA)</label>
             <select id="inp-epic">
-                <option value="">-- NO EPIC --</option>
+                <option value="">-- SIN ASIGNAR --</option>
                 ${epicOptions}
             </select>
 
-            <label>EXTERNAL_RESOURCES (LINKS)</label>
+            <label>RECURSOS Y ENLACES</label>
             <div id="links-container"></div>
-            <button type="button" id="btn-add-link" class="btn btn-outline" style="width:100%; margin-bottom: 20px;">+ ADD_LINK_SLOT</button>
+            <button type="button" id="btn-add-link" class="btn btn-outline" style="width:100%; margin-bottom: 20px;">+ AÑADIR ENLACE</button>
 
             <div style="display:flex; gap:10px; justify-content:flex-end; border-top: 2px solid #000; padding-top:20px;">
-                ${taskId ? `<button type="button" id="btn-delete" class="btn btn-text" style="color:var(--alert)">DELETE_TASK</button>` : ''}
-                <button type="submit" class="btn btn-acid">SAVE_CHANGES</button>
+                ${taskId ? `<button type="button" id="btn-delete" class="btn btn-text" style="color:var(--alert)">ELIMINAR</button>` : ''}
+                <button type="submit" class="btn btn-acid">GUARDAR CAMBIOS</button>
             </div>
         </form>
     `;
@@ -72,8 +72,9 @@ export async function openTaskModal(taskId = null) {
     const addLinkRow = (name = '', url = '') => {
         const row = document.createElement('div');
         row.className = 'link-row';
+        // MANTENEMOS LOS ESTILOS INLINE QUE FUNCIONABAN EN INGLÉS
         row.innerHTML = `
-            <input type="text" placeholder="Resource Name" class="link-name" value="${name}" style="flex:1">
+            <input type="text" placeholder="Nombre (ej: Drive)" class="link-name" value="${name}" style="flex:1">
             <input type="url" placeholder="https://..." class="link-url" value="${url}" style="flex:2">
             <button type="button" class="btn-remove-link btn btn-solid">X</button>
         `;
@@ -105,9 +106,9 @@ export async function openTaskModal(taskId = null) {
             startDate: document.getElementById('inp-start').value,
             dueDate: document.getElementById('inp-due').value,
             epicId: document.getElementById('inp-epic').value,
-            status: task.status || 'todo', // Mantener estado o default
+            status: task.status || 'todo',
             links: links,
-            createdAt: task.createdAt || undefined // DB lo maneja si es undefined
+            createdAt: task.createdAt || undefined 
         };
 
         await db.save('tasks', newTask);
@@ -118,7 +119,7 @@ export async function openTaskModal(taskId = null) {
     // Borrar
     if (taskId) {
         document.getElementById('btn-delete').onclick = async () => {
-            if (confirm('CONFIRM_DELETION?')) {
+            if (confirm('¿Seguro que quieres eliminar esta tarea?')) {
                 await db.delete('tasks', taskId);
                 overlay.classList.add('hidden');
                 Render.renderBoard();
@@ -130,7 +131,7 @@ export async function openTaskModal(taskId = null) {
 // --- EPIC MODAL (Gestión Rápida) ---
 export async function openEpicModal() {
     overlay.classList.remove('hidden');
-    title.textContent = "EPIC_MANAGER";
+    title.textContent = "GESTIÓN DE FASES";
     
     const refreshList = async () => {
         const epics = await EpicManager.getAll();
@@ -146,8 +147,8 @@ export async function openEpicModal() {
         
         body.innerHTML = `
             <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <input type="text" id="new-epic-name" placeholder="New Epic Name..." style="margin:0;">
-                <button id="btn-create-epic" class="btn btn-acid">CREATE</button>
+                <input type="text" id="new-epic-name" placeholder="Nombre de fase..." style="margin:0;">
+                <button id="btn-create-epic" class="btn btn-acid">CREAR</button>
             </div>
             <div id="epics-list">${listHTML}</div>
         `;
@@ -163,7 +164,7 @@ export async function openEpicModal() {
 
         document.querySelectorAll('.btn-del-epic').forEach(btn => {
             btn.onclick = async () => {
-                if (confirm('Delete Epic? Tasks will be detached.')) {
+                if (confirm('¿Eliminar fase? Las tareas se desvincularán.')) {
                     await EpicManager.delete(btn.dataset.id);
                     refreshList();
                 }
