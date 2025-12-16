@@ -99,3 +99,34 @@ label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.8rem
 /* Links Repeater Styles */
 .link-row { display: flex; gap: 5px; margin-bottom: 5px; }
 .link-row input { margin-bottom: 0; }
+
+/* --- FIX PARA LA FILA DE ENLACES --- */
+.link-row { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 8px; 
+    align-items: stretch; /* Estira el botón para igualar altura */
+}
+
+/* Esto es lo vital: Sobrescribimos el ancho del 100% global */
+.link-row input { 
+    width: auto !important; 
+    margin-bottom: 0;
+}
+
+/* Estilo para el botón X */
+.btn-remove-link {
+    background-color: var(--ink); /* Fondo Negro */
+    color: var(--acid);           /* X en Verde Ácido */
+    border: 1px solid var(--ink);
+    padding: 0 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove-link:hover {
+    color: #fff; /* Blanco al pasar el ratón */
+}
