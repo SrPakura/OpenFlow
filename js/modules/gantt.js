@@ -28,7 +28,7 @@ export const GanttManager = {
         });
 
         if (ganttTasks.length === 0) {
-            document.getElementById(containerId).innerHTML = '<p class="terminal-text" style="padding:20px;">>> NO_DATA: Create tasks with dates to generate timeline.</p>';
+            document.getElementById(containerId).innerHTML = '<p class="terminal-text" style="padding:20px;">> SIN DATOS: Crea tareas con fechas para generar el cronograma.</p>';
             return;
         }
 
@@ -92,3 +92,4 @@ export const GanttManager = {
         }, 100);
     }
 };
+
