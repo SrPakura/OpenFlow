@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Lite TFM - UX/UI Board</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/kanban.css">
+
+    <!-- Fuente recomendada: Inter (muy usada en UI moderna) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Librería para Capturas de Pantalla (Snapshot) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR: Herramientas y Navegación -->
+    <header class="top-bar">
+        <div class="logo">
+            <span class="logo-icon">⚡</span>
+            <h1>Jira Lite <span class="badge">TFM Edition</span></h1>
+        </div>
+        
+        <div class="actions">
+            <button id="btn-snapshot" class="btn btn-secondary" title="Guardar foto del tablero">
+                📷 Foto Tablero
+            </button>
+            <button id="btn-export" class="btn btn-secondary" title="Descargar datos para auditoría">
+                💾 Backup JSON
+            </button>
+            <button id="btn-add-task" class="btn btn-primary">
+                + Nueva Tarea
+            </button>
+        </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL: El Tablero Kanban -->
+    <main id="board-container" class="kanban-board">
+        <!-- Las columnas se generarán aquí dinámicamente o puedes ponerlas fijas -->
+        <div class="column" data-status="todo">
+            <div class="column-header">
+                <h2>Por Hacer</h2>
+                <span class="count" id="count-todo">0</span>
+            </div>
+            <div class="task-list" id="todo-list">
+                <!-- Aquí caerán las tarjetas -->
+            </div>
+        </div>
+
+        <div class="column" data-status="inprogress">
+            <div class="column-header">
+                <h2>En Progreso</h2>
+                <span class="count" id="count-inprogress">0</span>
+            </div>
+            <div class="task-list" id="inprogress-list"></div>
+        </div>
+
+        <div class="column" data-status="done">
+            <div class="column-header">
+                <h2>Hecho</h2>
+                <span class="count" id="count-done">0</span>
+            </div>
+            <div class="task-list" id="done-list"></div>
+        </div>
+    </main>
+
+    <!-- MODAL: Crear/Editar Tarea -->
+    <div id="task-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Nueva Tarea</h2>
+                <button id="btn-close-modal" class="close">&times;</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="task-title" required placeholder="Ej: Diseñar wireframes de login">
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción (Soporta Markdown simple)</label>
+                    <textarea id="task-desc" rows="4" placeholder="Detalles de la tarea..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Etiqueta</label>
+                        <select id="task-tag">
+                            <option value="ux">Investigación UX</option>
+                            <option value="ui">Diseño UI</option>
+                            <option value="dev">Desarrollo</option>
+                            <option value="doc">Documentación</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridad</label>
+                        <select id="task-priority">
+                            <option value="low">Baja</option>
+                            <option value="medium" selected>Media</option>
+                            <option value="high">Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="btn-delete-task" class="btn btn-danger hidden">Eliminar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Tarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Carga de Scripts (Módulos ES6) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
