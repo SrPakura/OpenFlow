@@ -4,10 +4,10 @@ import { db } from '../core/db.js';
 // CONFIGURACIÓN CENTRAL DEL TABLERO
 // Si quieres añadir una columna "Bloqueado", la pones aquí y listo.
 export const BOARD_CONFIG = [
-    { id: 'todo', title: '01_POR_HACER' },
-    { id: 'inprogress', title: '02_EN_CURSO' },
-    { id: 'review', title: '03_EN_REVISIÓN' }, // ¡Nueva columna profesional!
-    { id: 'done', title: '04_HECHO' }
+    { id: 'todo', title: 'POR HACER' },
+    { id: 'inprogress', title: 'EN CURSO' },
+    { id: 'review', title: 'EN REVISIÓN' },
+    { id: 'done', title: 'HECHO' }
 ];
 
 export const BoardManager = {
@@ -51,3 +51,4 @@ export const BoardManager = {
         return false;
     }
 };
+
