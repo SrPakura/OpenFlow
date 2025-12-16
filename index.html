@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFlow_v2 // SYSTEM_ONLINE</title>
+    
+    <!-- CSS: Brutalist Stack -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.css">
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Fonts: JetBrains Mono (Via Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER: COMMAND CENTER -->
+    <header class="cmd-bar">
+        <div class="brand">
+            <span class="status-dot"></span>
+            <h1>OPENFLOW_v2 <span class="version">BETA</span></h1>
+        </div>
+        
+        <div class="toolbar">
+            <button id="btn-view-board" class="btn btn-acid active">[ BOARD_VIEW ]</button>
+            <button id="btn-view-gantt" class="btn btn-outline">[ GANTT_TIMELINE ]</button>
+            <span class="separator">|</span>
+            <button id="btn-epics" class="btn btn-text">EDT_EPICS</button>
+            <button id="btn-import" class="btn btn-text">IMP_DATA</button>
+            <button id="btn-export" class="btn btn-text">DUMP_JSON</button>
+            <button id="btn-add-task" class="btn btn-solid">+ NEW_PROTOCOL</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main id="app-container">
+        
+        <!-- VISTA 1: KANBAN BOARD -->
+        <div id="board-view" class="board-grid">
+            <!-- Columns will be injected by JS -->
+        </div>
+
+        <!-- VISTA 2: GANTT CHART -->
+        <div id="gantt-view" class="hidden">
+            <div class="gantt-controls">
+                 <!-- Filtros del Gantt si hicieran falta -->
+                 <span class="terminal-text">> RENDER_MODE: CHRONOLOGICAL</span>
+            </div>
+            <div id="gantt-chart"></div>
+        </div>
+
+    </main>
+
+    <!-- MODAL SYSTEM (Universal) -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2 id="modal-title">INPUT_REQUIRED</h2>
+                <button id="btn-close-modal" class="close-x">X</button>
+            </div>
+            <div id="modal-body">
+                <!-- Forms injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
