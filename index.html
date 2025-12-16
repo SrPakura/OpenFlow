@@ -17,23 +17,34 @@
 </head>
 <body>
 
-    <!-- HEADER: COMMAND CENTER -->
+    <!-- HEADER: COMMAND CENTER + UN PEQUEÑO GUIÑO -->
     <header class="cmd-bar">
-        <div class="brand">
-            <span class="status-dot"></span>
-            <h1>OPENFLOW_v2 <span class="version">BETA</span></h1>
-        </div>
-        
-        <div class="toolbar">
-    <button id="btn-view-board" class="btn btn-acid active">[ TABLERO ]</button>
-    <button id="btn-view-gantt" class="btn btn-outline">[ CRONOGRAMA ]</button>
-    <span class="separator">|</span>
-    <button id="btn-epics" class="btn btn-text">GESTIONAR FASES</button>
-    <button id="btn-import" class="btn btn-text">IMPORTAR</button>
-    <button id="btn-export" class="btn btn-text">EXPORTAR</button>
-    <button id="btn-add-task" class="btn btn-solid">+ NUEVA TAREA</button>
-</div>
-    </header>
+    <div class="brand">
+        <span class="status-dot"></span>
+        <h1>OPENFLOW_v2 <span class="version">BETA</span></h1>
+    </div>
+
+    <a href="https://www.youtube.com/@ninopolis420" target="_blank" style="
+        font-family: var(--font-mono); 
+        font-size: 0.8rem; 
+        color: var(--ink); 
+        text-decoration: none; 
+        border-bottom: 1px dashed var(--alert);
+        padding-bottom: 2px;
+    ">
+        Un artista pequeño que me encanta, darle amor &lt;3
+    </a>
+    
+    <div class="toolbar">
+        <button id="btn-view-board" class="btn btn-acid active">[ TABLERO ]</button>
+        <button id="btn-view-gantt" class="btn btn-outline">[ CRONOGRAMA ]</button>
+        <span class="separator">|</span>
+        <button id="btn-epics" class="btn btn-text">GESTIONAR FASES</button>
+        <button id="btn-import" class="btn btn-text">IMPORTAR</button>
+        <button id="btn-export" class="btn btn-text">EXPORTAR</button>
+        <button id="btn-add-task" class="btn btn-solid">+ NUEVA TAREA</button>
+    </div>
+</header>
 
     <!-- MAIN CONTAINER -->
     <main id="app-container">
@@ -72,4 +83,5 @@
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
+
 
